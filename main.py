@@ -36,12 +36,6 @@ while game_is_on:
             game_is_on = False
 
 # make a csv file of missing states
-not_guessed = []
-for each in states:
-    if each in correct_guesses:
-        pass
-    else:
-        not_guessed.append(each)
-
-missed_states = pandas.DataFrame(not_guessed)
-missed_states.to_csv("states_to_learn.csv")
+missed_states = [state for state in states if state not in correct_guesses]
+new_data = pandas.DataFrame(missed_states)
+new_data.to_csv("states_to_learn.csv")
